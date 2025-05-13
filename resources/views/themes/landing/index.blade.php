@@ -37,10 +37,11 @@
 <head>
     <meta charset="utf-8" />
     <title>{{ $product->name }}</title>
+    <meta name="description" content="{{ $product->seo_description }}" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="description" content="" />
+    <meta name="keywords" content="{{ $product->seo_tags }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themes/pholbari') }}/imgs/theme/favicon.svg" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themes/pholbari/imgs/pholbari.png') }}" />
     <link rel="stylesheet" href="{{ asset('themes/pholbari') }}/css/main5103.css?v=6.0" />
     <script>
         ! function(f, b, e, v, n, t, s) {
