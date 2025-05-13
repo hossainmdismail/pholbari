@@ -3,27 +3,27 @@
         [
             'id' => 1,
             'name' => '10 KG',
-            'price' => 1350,
+            'price' => 1300,
         ],
         [
             'id' => 2,
             'name' => '12 KG',
-            'price' => 1600,
+            'price' => 1500,
         ],
         [
             'id' => 3,
             'name' => '22 KG',
-            'price' => 2850,
+            'price' => 2750,
         ],
         [
             'id' => 4,
-            'name' => '32 KG',
-            'price' => 4050,
+            'name' => '34 KG',
+            'price' => 4250,
         ],
         [
             'id' => 5,
-            'name' => '42 KG',
-            'price' => 5250,
+            'name' => '40 KG',
+            'price' => 5000,
         ],
     ];
 @endphp
@@ -276,51 +276,33 @@
                                     <span class="zoom-icon"><i class="fi-rs-search"></i></span>
                                     <!-- MAIN SLIDES -->
                                     <div class="product-image-slider">
-                                        <figure class="border-radius-10">
-                                            <img src="{{ asset('themes/pholbari') }}/imgs/shop/product-16-2.jpg"
-                                                alt="product image" />
-                                        </figure>
-                                        <figure class="border-radius-10">
-                                            <img src="{{ asset('themes/pholbari') }}/imgs/shop/product-16-1.jpg"
-                                                alt="product image" />
-                                        </figure>
-                                        <figure class="border-radius-10">
-                                            <img src="{{ asset('themes/pholbari') }}/imgs/shop/product-16-3.jpg"
-                                                alt="product image" />
-                                        </figure>
-                                        <figure class="border-radius-10">
-                                            <img src="{{ asset('themes/pholbari') }}/imgs/shop/product-16-4.jpg"
-                                                alt="product image" />
-                                        </figure>
-                                        <figure class="border-radius-10">
-                                            <img src="{{ asset('themes/pholbari') }}/imgs/shop/product-16-5.jpg"
-                                                alt="product image" />
-                                        </figure>
-                                        <figure class="border-radius-10">
-                                            <img src="{{ asset('themes/pholbari') }}/imgs/shop/product-16-6.jpg"
-                                                alt="product image" />
-                                        </figure>
-                                        <figure class="border-radius-10">
-                                            <img src="{{ asset('themes/pholbari') }}/imgs/shop/product-16-7.jpg"
-                                                alt="product image" />
-                                        </figure>
+                                        @foreach ($product->uniqueAttributes() as $key => $image)
+                                            <figure class="border-radius-10">
+                                                <img src="{{ asset('files/product/' . $image->image) }}"
+                                                    alt="product image" />
+                                            </figure>
+                                        @endforeach
+                                        @if ($product->images)
+                                            @foreach ($product->images as $key => $image)
+                                                <figure class="border-radius-10">
+                                                    <img src="{{ asset('files/product/' . $image->image) }}"
+                                                        alt="product image" />
+                                                </figure>
+                                            @endforeach
+                                        @endif
                                     </div>
                                     <!-- THUMBNAILS -->
                                     <div class="slider-nav-thumbnails">
-                                        <div><img src="{{ asset('themes/pholbari') }}/imgs/shop/thumbnail-3.jpg"
+                                         @foreach ($product->uniqueAttributes() as $key => $image)
+                                           <div><img src="{{ asset('files/product/' . $image->image) }}"
                                                 alt="product image" /></div>
-                                        <div><img src="{{ asset('themes/pholbari') }}/imgs/shop/thumbnail-4.jpg"
+                                        @endforeach
+                                        @if ($product->images)
+                                            @foreach ($product->images as $key => $image)
+                                                <div><img src="{{ asset('files/product/' . $image->image) }}"
                                                 alt="product image" /></div>
-                                        <div><img src="{{ asset('themes/pholbari') }}/imgs/shop/thumbnail-5.jpg"
-                                                alt="product image" /></div>
-                                        <div><img src="{{ asset('themes/pholbari') }}/imgs/shop/thumbnail-6.jpg"
-                                                alt="product image" /></div>
-                                        <div><img src="{{ asset('themes/pholbari') }}/imgs/shop/thumbnail-7.jpg"
-                                                alt="product image" /></div>
-                                        <div><img src="{{ asset('themes/pholbari') }}/imgs/shop/thumbnail-8.jpg"
-                                                alt="product image" /></div>
-                                        <div><img src="{{ asset('themes/pholbari') }}/imgs/shop/thumbnail-9.jpg"
-                                                alt="product image" /></div>
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </div>
                                 <!-- End Gallery -->
@@ -384,7 +366,7 @@
 
                                 <!-- Text Section -->
                                 <div class="col-md-6">
-                                    <h3 class="mb-3 font-bd">হোম ডেলিভারি </h3>
+                                    <h3 class="mb-3 font-bd">সারা বাংলাদেশ ফ্রি হোম ডেলিভারি</h3>
                                     <ul>
                                         <li class="d-flex align-items-center custom-flex gap-2 mb-2">
                                             <img src="{{ asset('themes/pholbari/imgs/svg/checkmark-circle-svgrepo-com.svg') }}"
@@ -516,7 +498,6 @@
                                                 style="color: red; padding: 10px; border: 1px solid red; margin-bottom: 15px;">
                                                 {{ session('err') }}
                                             </div>
-
                                         @endif
                                         @if ($errors->any())
                                             <div class="alert alert-danger"

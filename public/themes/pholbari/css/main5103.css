@@ -5615,16 +5615,22 @@ h6.post-title {
 /*Responsive*/
 @media only screen and (max-width: 992px) {
   .invoice .invoice-header {
-    padding: 80px 50px;
+    padding: 38px 15px;
+  }
+  .invoice-5 .invoice-banner {
+    padding: 0 8px;
   }
   .invoice .invoice-top {
     padding: 40px 50px 25px 50px;
   }
   .invoice .invoice-center {
-    padding: 0 50px 40px;
+    padding: 0 9px 27px;
+  }
+  h2{
+    font-size: 29px;
   }
   .invoice .invoice-bottom {
-    padding: 0 50px 25px;
+    padding: 0 10px 23px;
   }
   .invoice .back-top-home {
     margin-bottom: 30px;
