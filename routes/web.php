@@ -37,8 +37,8 @@ use App\Http\Controllers\UserController;
 //Frontend
 Auth::routes();
 
+Route::get('/', [FrontendController::class, 'home'])->name('index');
 Route::middleware(['admin'])->group(function () {
-    Route::get('/', [FrontendController::class, 'home'])->name('index');
     Route::get('/products/{slugs}', [ControllersProductController::class, 'single'])->name('product.view');
     //Cart Route
     Route::post('/add/cart', [ControllersProductController::class, 'cart'])->name('addtocart');

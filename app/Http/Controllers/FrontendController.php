@@ -18,6 +18,13 @@ class FrontendController extends Controller
 {
     function home()
     {
+        $products = Product::where('status', 'active')->latest()->get()->take(8);
+
+        // Get the default theme slug
+        return view('welcome',[
+            'products' => $products,
+        ]);
+
         $slug = 'default';
         $theme = Theme::where('default', true)->first();
         if ($theme) {
