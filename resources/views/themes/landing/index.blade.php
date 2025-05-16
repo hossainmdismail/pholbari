@@ -240,7 +240,7 @@
     </div>
     <div class="social">
         <a href="https://wa.me/+8801338699499" target="_blank" class="social-items font-bd fw-light mb-1">
-            <svg fill="#FFFFFF" width="22px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+            <svg fill="#FFFFFF" width="28px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 308 308" xml:space="preserve"
                 stroke="#FFFFFF">
                 <g id="SVGRepo_bgCarrier" stroke-width="0" />
@@ -257,7 +257,7 @@
         </a>
         <a href="https://m.me/pholbari" target="_blank" style="    background: #0d90f0;"
             class="social-items font-bd fw-light mb-1">
-            <svg width="22px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+            <svg width="28px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                 stroke="#ffffff">
                 <g id="SVGRepo_bgCarrier" stroke-width="0" />
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
@@ -846,7 +846,7 @@
     <script src="{{ asset('themes/pholbari') }}/js/plugins/jquery.countdown.min.js"></script>
     <script src="{{ asset('themes/pholbari') }}/js/plugins/images-loaded.js"></script>
     <script src="{{ asset('themes/pholbari') }}/js/plugins/isotope.js"></script>
-    <script src="{{ asset('themes/pholbari') }}/js/plugins/scrollup.js"></script>
+    {{-- <script src="{{ asset('themes/pholbari') }}/js/plugins/scrollup.js"></script> --}}
     <script src="{{ asset('themes/pholbari') }}/js/plugins/jquery.vticker-min.js"></script>
     <script src="{{ asset('themes/pholbari') }}/js/plugins/jquery.theia.sticky.js"></script>
     <script src="{{ asset('themes/pholbari') }}/js/plugins/jquery.elevatezoom.js"></script>
