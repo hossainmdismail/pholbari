@@ -38,27 +38,29 @@ class LandingController extends Controller
         [
             'id' => 1,
             'name' => '10 KG',
-            'price' => 1300,
+            'price' => 1280,
         ],
         [
             'id' => 2,
             'name' => '12 KG',
-            'price' => 1500,
+            'price' => 1530,
         ],
         [
             'id' => 3,
             'name' => '22 KG',
-            'price' => 2750,
+            'price' => 2810,
         ],
         [
             'id' => 4,
             'name' => '34 KG',
-            'price' => 4250,
+            'price' => 4350,
+            'discount' => 100,
         ],
         [
             'id' => 5,
-            'name' => '40 KG',
-            'price' => 5000,
+            'name' => '42 KG',
+            'price' => 5370,
+            'discount' => 200,
         ],
     ];
 
@@ -326,11 +328,11 @@ class LandingController extends Controller
             }
             $message = ($packageGrandTotal['id'] == 2 ? '<apan style="color:red"> Combo </span>' : '') . $request->message;
 
-                $shippingPrice = $shipping->price;
-                $totalPrice = $packageGrandTotal['price']  + $shipping->price;
+            $shippingPrice = $shipping->price;
+            $totalPrice = $packageGrandTotal['price']  + $shipping->price;
 
-                if ($inventory->product) {
-                    // Prepare data for Meta Pixel before clearing the cookie
+            if ($inventory->product) {
+                // Prepare data for Meta Pixel before clearing the cookie
                 $fbEvent = [
                     'event' => 'Purchase',
                     'data' => [
@@ -389,7 +391,7 @@ class LandingController extends Controller
         $newUser->name = $request->name;
         $newUser->number = $request->number;
         $newUser->email = $request->email;
-        $newUser->address = $request->house .', '. $request->jela;
+        $newUser->address = $request->house . ', ' . $request->jela;
         $newUser->password = '12345678';
         $newUser->save();
         if ($newUser) {

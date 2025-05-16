@@ -3,27 +3,29 @@
         [
             'id' => 1,
             'name' => '10 KG',
-            'price' => 1300,
+            'price' => 1280,
         ],
         [
             'id' => 2,
             'name' => '12 KG',
-            'price' => 1500,
+            'price' => 1530,
         ],
         [
             'id' => 3,
             'name' => '22 KG',
-            'price' => 2750,
+            'price' => 2810,
         ],
         [
             'id' => 4,
             'name' => '34 KG',
-            'price' => 4250,
+            'price' => 4350,
+            'discount' => 100,
         ],
         [
             'id' => 5,
-            'name' => '40 KG',
-            'price' => 5000,
+            'name' => '42 KG',
+            'price' => 5370,
+            'discount' => 200,
         ],
     ];
 @endphp
@@ -62,7 +64,7 @@
             s.parentNode.insertBefore(t, s)
         }(window, document, 'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '730073492259194');
+        fbq('init', '1730267687568116');
         // Track AddToCart Event
         fbq('track', 'PageView', {
             content_ids: [{{ $product->id }}], // Replace with your product ID
@@ -72,8 +74,14 @@
         });
     </script>
     <noscript><img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=730073492259194&ev=PageView&noscript=1" /></noscript>
+            src="https://www.facebook.com/tr?id=1730267687568116&ev=PageView&noscript=1" /></noscript>
     <style>
+        span.offerTab {
+            line-height: 5px;
+            font-size: 12px;
+            text-decoration: line-through;
+        }
+
         .banner {
             background-color: #F3F9F7;
             padding: 20px 0;
@@ -293,14 +301,14 @@
                                     </div>
                                     <!-- THUMBNAILS -->
                                     <div class="slider-nav-thumbnails">
-                                         @foreach ($product->uniqueAttributes() as $key => $image)
-                                           <div><img src="{{ asset('files/product/' . $image->image) }}"
-                                                alt="product image" /></div>
+                                        @foreach ($product->uniqueAttributes() as $key => $image)
+                                            <div><img src="{{ asset('files/product/' . $image->image) }}"
+                                                    alt="product image" /></div>
                                         @endforeach
                                         @if ($product->images)
                                             @foreach ($product->images as $key => $image)
                                                 <div><img src="{{ asset('files/product/' . $image->image) }}"
-                                                alt="product image" /></div>
+                                                        alt="product image" /></div>
                                             @endforeach
                                         @endif
                                     </div>
@@ -386,6 +394,10 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="videoContainer">
+                            <iframe id="ytPlayer" width="100%" height="400" src="" frameborder="0"
+                                allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
+                        </div>
                         <div class="product-info mb-4">
                             <div class="tab-style3">
                                 {!! $product->description !!}
@@ -461,6 +473,10 @@
                                                                 <label for="size_{{ $key }}" class="d-flex">
                                                                     <span>{{ $pack['name'] }}</span>
                                                                     <strong>{{ $pack['price'] }} tk</strong>
+                                                                    @if (isset($pack['discount']))
+                                                                        <span class="offerTab">{{ $pack['discount'] }}
+                                                                            tk</span>
+                                                                    @endif
                                                                 </label>
                                                             </li>
                                                         @endforeach
@@ -925,7 +941,26 @@
         });
     </script>
 
+    <script>
+        const videoContainer = document.getElementById('videoContainer');
+        const ytPlayer = document.getElementById('ytPlayer');
+        let played = false;
 
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !played) {
+                    ytPlayer.src =
+                        "https://www.youtube.com/embed/OtyWqg2f-IM?autoplay=1&rel=0&modestbranding=1";
+                    played = true;
+                    observer.unobserve(videoContainer);
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        observer.observe(videoContainer);
+    </script>
 
 </body>
 
