@@ -3,29 +3,32 @@
         [
             'id' => 1,
             'name' => '10 KG',
-            'price' => 1280,
+            'price' => 1050,
+            'discount' => 230,
         ],
         [
             'id' => 2,
             'name' => '12 KG',
-            'price' => 1530,
+            'price' => 1290,
+            'discount' => 240,
         ],
         [
             'id' => 3,
             'name' => '22 KG',
-            'price' => 2810,
+            'price' => 2490,
+            'discount' => 320,
         ],
         [
             'id' => 4,
             'name' => '34 KG',
             'price' => 4350,
-            'discount' => 100,
+            'discount' => 422,
         ],
         [
             'id' => 5,
             'name' => '42 KG',
-            'price' => 5370,
-            'discount' => 200,
+            'price' => 5130,
+            'discount' => 502,
         ],
     ];
 @endphp
@@ -320,11 +323,12 @@
                                     <h2 class="title-detail font-bd">{{ $product->name }}</h2>
                                     <div class="clearfix product-price-cover">
                                         <div class="product-price primary-color float-left">
-                                            <span class="current-price text-brand font-bd">{{ $product->final_price }}
+                                            <span
+                                                class="current-price text-brand font-bd">{{ $product->getFinalPrice() }}
                                                 ৳</span>
                                             <span>
                                                 <span
-                                                    class="save-price font-md color3 ml-15">{{ $product->price - $product->final_price }}
+                                                    class="save-price font-md color3 ml-15">{{ $product->price - $product->getFinalPrice() }}
                                                     Off</span>
                                                 <span class="old-price font-md ml-15">{{ $product->price }}</span>
                                             </span>
@@ -374,21 +378,19 @@
 
                                 <!-- Text Section -->
                                 <div class="col-md-6">
-                                    <h3 class="mb-3 font-bd">সারা বাংলাদেশ ফ্রি হোম ডেলিভারি</h3>
+                                    <h3 class="mb-3 font-bd">সারা বাংলাদেশ হোম ডেলিভারি</h3>
                                     <ul>
                                         <li class="d-flex align-items-center custom-flex gap-2 mb-2">
                                             <img src="{{ asset('themes/pholbari/imgs/svg/checkmark-circle-svgrepo-com.svg') }}"
-                                                alt="check"> ঢাকা শহরের সব জায়গায় হোম
-                                            ডেলিভারি
+                                                alt="check"> সরাসরি বাগান থেকে আপনার বাড়িতে
                                         </li>
                                         <li class="d-flex align-items-center custom-flex gap-2 mb-2">
                                             <img src="{{ asset('themes/pholbari/imgs/svg/checkmark-circle-svgrepo-com.svg') }}"
-                                                alt="check"> দেশের সব বড় শহরে হোম ডেলিভারি
+                                                alt="check"> ১০০% ফরমালিনমুক্ত
                                         </li>
                                         <li class="d-flex align-items-center custom-flex gap-2 mb-2">
                                             <img src="{{ asset('themes/pholbari/imgs/svg/checkmark-circle-svgrepo-com.svg') }}"
-                                                alt="check"> উপজেলা সদর থেকে ৫ কিলোমিটার
-                                            এর মধ্যে হোম ডেলিভারি
+                                                alt="check"> রয়েছে আম পছন্দ না হলে ফ্রি রিটার্নের সুযোগ
                                         </li>
                                     </ul>
                                 </div>
@@ -944,19 +946,24 @@
     <script>
         const videoContainer = document.getElementById('videoContainer');
         const ytPlayer = document.getElementById('ytPlayer');
-        let played = false;
+        const videoSrc = "https://www.youtube.com/embed/OtyWqg2f-IM?autoplay=1&rel=0&modestbranding=1";
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && !played) {
-                    ytPlayer.src =
-                        "https://www.youtube.com/embed/OtyWqg2f-IM?autoplay=1&rel=0&modestbranding=1";
-                    played = true;
-                    observer.unobserve(videoContainer);
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+                    // Play video
+                    if (ytPlayer.src !== videoSrc) {
+                        ytPlayer.src = videoSrc;
+                    }
+                } else {
+                    // Stop video by clearing src
+                    if (ytPlayer.src) {
+                        ytPlayer.src = "";
+                    }
                 }
             });
         }, {
-            threshold: 0.5
+            threshold: [0, 0.5]
         });
 
         observer.observe(videoContainer);

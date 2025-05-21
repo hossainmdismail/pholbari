@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+
 <head>
     <meta charset="utf-8" />
-    <title>Nest - Multipurpose eCommerce HTML Template</title>
+    <title>PholeBari - স্বাধের রাজা হিমসাগর আম – ১০০% ফরমালিনমুক্ত</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta property="og:title" content="" />
-    <meta property="og:type" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:image" content="" />
+    <meta property="og:title" content="PholeBari - স্বাধের রাজা হিমসাগর আম – ১০০% ফরমালিনমুক্ত" />
+    <meta property="og:type" content="Ecommerce" />
+    <meta property="og:url" content="https://pholbari.com/" />
+    <meta property="og:image" content="{{ asset('themes/pholbari/imgs/pholbari.png') }}" />
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themes/pholbari') }}/imgs/theme/favicon.svg" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themes/pholbari/imgs/pholbari.png') }}" />
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('themes/pholbari') }}/css/main5103.css?v=6.0" />
 </head>
@@ -40,44 +42,57 @@
                 </div>
                 <div class="row vendor-grid">
                     @forelse ($products as $product)
-                                            <div class="col-lg-3 col-md-6 col-12 col-sm-6">
-                        <div class="vendor-wrap mb-40">
-                            <div class="vendor-img-action-wrap">
-                                <div class="vendor-img">
-                                    <a href='{{ route('landing.index',$product->slugs) }}'>
-                                        <img class="default-img" src="{{ asset('themes/pholbari') }}/imgs/vendor/vendor-1.png" alt="" />
-                                    </a>
-                                </div>
-                                <div class="product-badges product-badges-position product-badges-mrg">
-                                    <span class="hot">New</span>
-                                </div>
-                            </div>
-                            <div class="vendor-content-wrap">
-                                <div class="d-flex justify-content-between align-items-end mb-30">
-                                    <div>
-                                        <div class="product-category">
-                                            <span class="text-muted">{{ $product->category?$product->category->name:'Unknown' }}</span>
-                                        </div>
-                                        <h4 class="mb-5 font-bd"><a href='{{ route('landing.index',$product->slugs) }}'>{{ $product->name }}</a></h4>
-                                        <div class="product-rate-cover">
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 90%"></div>
-                                            </div>
-                                            <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                        </div>
+                        <div class="col-lg-3 col-md-6 col-12 col-sm-6">
+                            <div class="vendor-wrap mb-40">
+                                <div class="vendor-img-action-wrap">
+                                    <div class="vendor-img">
+                                        <a href='{{ route('landing.index', $product->slugs) }}'>
+                                            @if ($product->images)
+                                                {{-- @foreach ($product->images as $key => $image) --}}
+                                                <img class="default-img"
+                                                    src="{{ asset('files/product/' . $product->images->first()->image) }}"
+                                                    alt="" />
+                                                {{-- @endforeach --}}
+                                            @endif
+                                        </a>
+                                    </div>
+                                    <div class="product-badges product-badges-position product-badges-mrg">
+                                        <span class="hot">New</span>
                                     </div>
                                 </div>
-                                <div class="vendor-info mb-30">
-                                    <ul class="contact-infor text-muted">
-                                        <li class="font-bd"><span>{{ $product->short_description }}</span></li>
-                                    </ul>
+                                <div class="vendor-content-wrap">
+                                    <div class="d-flex justify-content-between align-items-end mb-30">
+                                        <div>
+                                            <div class="product-category">
+                                                <span
+                                                    class="text-muted">{{ $product->category ? $product->category->name : 'Unknown' }}</span>
+                                            </div>
+                                            <h4 class="mb-5 font-bd"><a
+                                                    href='{{ route('landing.index', $product->slugs) }}'>{{ $product->name }}</a>
+                                            </h4>
+                                            <div class="product-rate-cover">
+                                                <div class="product-rate d-inline-block">
+                                                    <div class="product-rating" style="width: 90%"></div>
+                                                </div>
+                                                <span class="font-small ml-5 text-muted"> (4.8)</span>
+                                            </div>
+                                            <div class="product-rate-cover">
+                                                <h5 class="text-brand">{{ $product->getFinalPrice() }} ৳</h5>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="vendor-info mb-30">
+                                        <ul class="contact-infor text-muted">
+                                            <li class="font-bd"><span>{{ $product->short_description }}</span></li>
+                                        </ul>
+                                    </div>
+                                    <a class='btn btn-xs' href='{{ route('landing.index', $product->slugs) }}'>Visit
+                                        Store <i class="fi-rs-arrow-small-right"></i></a>
                                 </div>
-                                <a class='btn btn-xs' href='{{ route('landing.index',$product->slugs) }}'>Visit Store <i class="fi-rs-arrow-small-right"></i></a>
                             </div>
                         </div>
-                    </div>
                     @empty
-
                     @endforelse
                 </div>
             </div>
