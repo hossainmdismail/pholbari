@@ -38,32 +38,32 @@ class LandingController extends Controller
         [
             'id' => 1,
             'name' => '10 KG',
-            'price' => 1050,
-            'discount' => 230,
+            'price' => 1150,
+            'discount' => 130,
         ],
         [
             'id' => 2,
             'name' => '12 KG',
-            'price' => 1290,
-            'discount' => 240,
+            'price' => 1380,
+            'discount' => 256,
         ],
         [
             'id' => 3,
             'name' => '22 KG',
-            'price' => 2490,
-            'discount' => 320,
+            'price' => 2530,
+            'discount' => 286,
         ],
         [
             'id' => 4,
             'name' => '34 KG',
-            'price' => 4350,
-            'discount' => 422,
+            'price' => 3910,
+            'discount' => 442,
         ],
         [
             'id' => 5,
-            'name' => '42 KG',
-            'price' => 5130,
-            'discount' => 502,
+            'name' => '44 KG',
+            'price' => 5060,
+            'discount' => 572,
         ],
     ];
 
