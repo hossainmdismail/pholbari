@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Nest - Multipurpose eCommerce HTML Template</title>
+    <title>Pholbari - Thanks for your order</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,6 +17,34 @@
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themes/pholbari/imgs/pholbari.png') }}" />
     <link rel="stylesheet" href="{{ asset('themes/pholbari') }}/css/main5103.css?v=6.0" />
+<script>
+!function(f,b,e,v,n,t,s){
+    if(f.fbq)return;n=f.fbq=function(){n.callMethod ?
+    n.callMethod.apply(n,arguments) : n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}
+(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2152173008558849');
+
+// Track Purchase Event
+fbq('track', 'Purchase', {
+    value: {{ $order->price }},
+    currency: 'BDT',
+    content_ids: ["{{ $order->order_id }}"],
+    content_type: 'product',
+    contents: [{
+       id: "{{ $order->order_id }}",
+       quantity: 1
+    }],
+    order_id: "{{ $order->order_id }}"
+});
+</script>
+<noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=2152173008558849&ev=PageView&noscript=1" />
+</noscript>
 </head>
 
 <body>
@@ -65,20 +93,25 @@
                                                     <tr>
                                                         <td>
                                                             <div class="item-desc-1">
-                                                                <span class="font-bd">{{ $prdt->product?$prdt->product->product->name:'Unknown' }}</span>
-                                                                <small>SKU: {{ $prdt->product?$prdt->product->product->sku:'Unknown' }}</small>
+                                                                <span
+                                                                    class="font-bd">{{ $prdt->product ? $prdt->product->product->name : 'Unknown' }}</span>
+                                                                <small>SKU:
+                                                                    {{ $prdt->product ? $prdt->product->product->sku : 'Unknown' }}</small>
                                                             </div>
                                                         </td>
-                                                        <td class="text-center">{{ $order->price - $order->shipping_charge }}</td>
+                                                        <td class="text-center">
+                                                            {{ $order->price - $order->shipping_charge }}</td>
                                                         <td class="text-center">{{ $order->admin_message }}</td>
-                                                        <td class="text-right">{{ $order->price - $order->shipping_charge }}</td>
+                                                        <td class="text-right">
+                                                            {{ $order->price - $order->shipping_charge }}</td>
                                                     </tr>
                                                 @empty
                                                 @endforelse
                                             @endif
                                             <tr>
                                                 <td colspan="3" class="text-end f-w-600">SubTotal</td>
-                                                <td class="text-right">{{ $order->price - $order->shipping_charge }}</td>
+                                                <td class="text-right">{{ $order->price - $order->shipping_charge }}
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="3" class="text-end f-w-600">Shipping</td>
@@ -97,9 +130,12 @@
                                     <div class="col-md-6">
                                         <h6 class="mb-15">Invoice Infor</h6>
                                         <p class="font-sm">
-                                            <strong>Issue date:</strong> {{ $order->created_at->format('d M Y') }}<br />
-                                            <strong>Invoice To:</strong> {{ $order->user?$order->user->name:'Unknown' }}<br />
-                                            <strong>Address:</strong> {{ $order->user?$order->user->address:'Unknown' }}
+                                            <strong>Issue date:</strong>
+                                            {{ $order->created_at->format('d M Y') }}<br />
+                                            <strong>Invoice To:</strong>
+                                            {{ $order->user ? $order->user->name : 'Unknown' }}<br />
+                                            <strong>Address:</strong>
+                                            {{ $order->user ? $order->user->address : 'Unknown' }}
                                         </p>
                                     </div>
                                     <div class="col-md-6 text-end">
