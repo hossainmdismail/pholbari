@@ -947,7 +947,7 @@
     <script>
         const videoContainer = document.getElementById('videoContainer');
         const ytPlayer = document.getElementById('ytPlayer');
-        const videoSrc = "https://www.youtube.com/embed/OtyWqg2f-IM?autoplay=1&rel=0&modestbranding=1";
+        const videoSrc = "https://www.youtube.com/embed/j4c5eWXc0sM?si=USCc_WXYGSHAuZn2&autoplay=1&rel=0&modestbranding=1";
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
